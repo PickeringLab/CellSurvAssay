@@ -1,0 +1,360 @@
+---
+title: "<center> CellSurvAssay <center>"
+subtitle: "<center> Clonogenic Survival Analysis in R made easy! <center><br>"
+date: "<center> _`r Sys.Date()`_ <center>"
+author:
+  - name: "<center> Arunangshu Sarkar <center>"
+    email: "<center> arunangshu.sarkar@cuanschutz.edu <center>"
+output: 
+  rmarkdown::html_document:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{CellSurvAssay}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r setup, echo=FALSE}
+library(CellSurvAssay)
+```
+
+# CellSurvAssay
+
+**CellSurvAssay** consists of a couple of tools that can be used to perform Clonogenic Survival Analysis in R very easily and efficiently. These two tools are:
+
+-   CellSurvAssay R package: This helps even beginner R users to perform the analysis in R, while maintaining the flexibility of a package.
+
+-   CellSurvAssay Shiny app: This is a web application that helps users with no experience in R to perform the analysis, in R. The app is based on the CellSurvAssay R package and can be accessed [here](https://pickeringlab.shinyapps.io/CellSurvAssay-App).
+
+This document is the vignette that accompanies with the R package, and describes comprehensively how the package works and how it can be used to perform the analysis. For details on the Shiny app, please access it and refer to its Help pages. For more details on both of these tools and methodologies, please refer to (cite our paper).
+
+# Purpose of the CellSurvAssay R package
+
+-   This R package has been written around [CFAssay](https://bioconductor.org/packages/release/bioc/html/CFAssay.html), another R package that can be used to perform Cell Survival Assay analysis in R. However, **CellSurvAssay** has it's own purposes and advantages:
+    -   it makes performing Clonogenic Survival Analysis in R incredibly user-friendly and efficient, even for beginner R users who don't have the luxury of time to dig deeper into R,
+    -   it arranges all the commonly used steps of clonogenic assay analysis in one location and automates the data wrangling steps to the extent that only single lines of code suffice for each step of the analysis,
+    -   it utilizes `ggplot()` to plot the cell survival curves, and builds better quality figures than other available R packages,
+    -   it is less time consuming and more convenient for the user, as it accepts the raw data for the analysis and calculates the plating efficiencies by itself, unlike many automated software commonly used,
+    -   it offers various method options for parameter estimation and calculating plating efficiencies, unlike most other available software tools, and
+    -   as R is being utilized, the methodology stays open and the results reproducible.
+
+# Installing the package
+
+-   The package is being shared through [GitHub](https://github.com/). Running the following set of codes installs and loads the package in R memory:
+
+```{r eval=FALSE}
+
+# if installing from Bioconductor
+# install BiocManager, if required
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+# install CellSurvAssay
+BiocManager::install("CellSurvAssay")
+# load CellSurvAssay in R
+library(CellSurvAssay) 
+
+
+
+# if installing from GitHub
+# install devtools, if required
+if(!require(devtools)) {
+    install.packages("devtools")
+    library(devtools)
+}
+# install CellSurvAssay
+install_github("arunangshu-github/CellSurvAssay", build_vignettes = TRUE)
+# load CellSurvAssay in R memory
+library(CellSurvAssay) 
+```
+
+-   This vignette can be accessed from R using the following command:
+
+```{r eval=FALSE}
+browseVignettes("CellSurvAssay")
+```
+
+# Importing the data set
+
+-   The function `importData()` helps import the data set. Its a simple helper function aimed for aiding beginner R users, and other importing functions can be used as well instead of this.
+-   The advantages of using this function instead of other importing functions are:
+    -   beginner R users don't need to search for functions in other R packages just to import their data,
+    -   one function supports importing multiple file types, including csv, tsv, xlsx, and delimited text files, and
+    -   if the minimum requirements, as explained below, are not matched by the imported dataset, it gives an error message, which helps to rectify it before proceeding with the downstream analysis.
+-   It is important to note here that to successfully run the package, at least the following columns, with these exact names, should be present in your data set. Presence of additional columns or the sequence of these columns have no affect on the analysis.
+    -   "cline" - cell lines: distinguishes the curves in the data frame
+    -   "Exp" - replicates: discriminates replicates within each curve
+    -   "dose" - applied radiation dose
+    -   "ncells" - no. of cells seeded
+    -   "ncolonies" - no. of counted colonies
+-   If the column names of the imported data do not match with the requirements, it gives an error message.
+-   Below is the syntax to use this function. Here, we assign the name `datatab` to the data, but any other name can be used as well.
+-   Within the parentheses of the function, enter the path of the file and then the type of file, both within quotes:
+
+```{r eval=FALSE}
+datatab <- importData("path/to/file", "type of file")
+```
+
+-   If it is a .xlsx file, there is no need to enter the type of file. For other file types, entering `filetype` is a requirement, as shown below:
+
+```{r eval=FALSE}
+datatab <- importData("path/to/file.xlsx") #for an excel file
+datatab <- importData("path/to/file.csv", filetype = "csv") #for a csv file
+datatab <- importData("path/to/file.tsv", filetype = "tsv") #for a tsv file
+```
+
+-   If the file is a delimited text file, the following format can be followed:
+
+```{r eval=FALSE}
+#for a '|' delimited file
+datatab <- importData("path/to/file", filetype = "txt", separator = "|") 
+
+#for a tab delimited file
+datatab <- importData("path/to/file", filetype = "txt", separator = "\t") 
+```
+
+-   The package contains a data set that can be used to get familiar with the package. It can be imported in the R environment as below:
+
+```{r}
+datatab <- CASP8_data
+```
+
+### Additional arguments
+
+-   Additional arguments can be used with `importData()` as well, just like the [read_csv, read_tsv & read_delim](https://readr.tidyverse.org/reference/read_delim.html) functions of the [readr](https://readr.tidyverse.org/index.html) package, or the [read_excel](https://readxl.tidyverse.org/reference/read_excel.html) function of the [readxl](https://readxl.tidyverse.org/index.html) package.
+
+-   Below are a couple of examples of additional arguments that can be used to import a data set using `importData()`:
+
+```{r eval=FALSE}
+#to skip the first couple of rows
+datatab <- importData("path/to/file.xlsx", skip = 2)
+
+#to tell R that missing values are denoted by "-" in the data being imported
+datatab <- importData("path/to/file.xlsx", na = "-") 
+```
+
+-   Please note that if a name different from `datatab` is chosen for the imported data set, *that* name must be used in the downstream analysis.
+-   When the data is imported successfully, it should appear in the "Global Environment" of RStudio (top-right box). To view it, use the following command:
+
+```{r eval=FALSE}
+View(datatab)
+```
+
+# Fitting the Linear Quadratic Model
+
+-   The linear-quadratic model depicts the effect of radiation or other insulting agent on cell survival. It's given by: $$
+    S = S(D)/S(0) = e^{- \alpha D - \beta D^2}
+    $$
+
+-   Here, cell survival S is a function of dose D of the insulting agent to which the cells are exposed. S(0) is the plating efficiency, the surviving fraction of untreated or unirradiated cells, and S(D) is that of treated cells. $\alpha$ and $\beta$ are parameters that describe the cell's radiosensitivity.
+
+-   Typically, S(0) is considered fixed and kept on the left side of the equation. However, CFAssay treats colonies from untreated cells as random observations, similar to colonies from treated cells, and keeps S(0) on the right side of the equation. Moreover, CFAssay formulates the equation differently and reverses the signs, resulting in the following equation: $$
+    S = S(D) = e^{c + \alpha D + \beta D^2}
+    $$
+
+-   $c=\log {S(0)}$ is the intercept here and varies between different experiments.
+
+-   CellSurvAssay fits the linear quadratic model similar to CFAssay. The `lqmodelFit()` function helps fit the linear quadratic model for any cell type present in the imported data.
+
+-   Within the parentheses, first enter the name of the data set given by you, and then, within quotes, the cell type for which the model is to be fit.
+
+```{r}
+lqmodelFit(datatab, "shCASP8-N")
+```
+
+-   The output tells us the $\alpha$ and $\beta$ values among other statistics.
+-   It's important to note here that due to the positive formulation of the model, the parameters $c$, $\alpha$ and $\beta$ generated by R will have negative values. So, from the above results, the $\alpha$ and $\beta$ for shCASP8-N are 0.0161308 and 0.03678049 respectively.
+
+### Other method options
+
+-   CellSurvAssay, like CFAssay, uses the maximum likelihood (ML) method as default for calculating the parameters instead of the commonly applied least-squares (LS) method because the LS method necessitates the data to be normally distributed, while colony numbers being discrete values follow a Poisson distribution, making the ML method preferable statistically. However, the options for using the standard LS method `(method = “ls”)` and a weighted LS method described by Franken et al. `(method = “franken”)` are also present for comparison.
+-   The default model fitting method can be changed as follows:
+
+```{r eval=FALSE}
+lqmodelFit(datatab, "shCASP8-N", method = "ls") #least squares method
+lqmodelFit(datatab, "shCASP8-N", method = "franken") #franken method
+```
+
+-   Though the method of treating the data from untreated cells as random observations is statistically preferable and kept as default in the package `(PEmethod = “fit”)`, the option for implementing the conventional normalization method `(PEmethod = “fix”)` is present as well for evaluation.
+-   To change the default plating efficiency method, follow the syntax below:
+
+```{r eval=FALSE}
+lqmodelFit(datatab, "shCASP8-N", PEmethod = "fix")
+
+```
+
+# Plotting Cell Survival curves
+
+-   The cell survival curves can be plotted using two different functions: `plotCSCurve()` and `ggplotCSCurve()`.
+-   While the former gives the standard curves provided by the CFAssay package, the latter is preferred as it uses the widely popular `ggplot()` function of R to plot the curves, allowing all the customizations and better graphics. It also allows to easily download the figures plotted in the users' own specifications. Both the functions are described below.
+
+## Plotting using `plotCSCurve()`
+
+### Individual curves
+
+-   The function `plotCSCurve()` helps plot both individual and multiple curves. Below is the simplest way to plot a curve of a single cell type.
+-   Within the parentheses, first enter the name of the data set and then, within quotes, the cell type for which you want the curve.
+
+```{r, fig.dim = c(8, 6)}
+plotCSCurve(datatab, "control-B")
+```
+
+### Multiple curves
+
+-   The same function `plotCSCurve()` will help you plot multiple curves. Instead of entering a single cell type, just enter all the cell types for which the curves are required.
+
+```{r, fig.dim = c(8, 6)}
+plotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N")
+```
+
+### Customizing the plots
+
+-   This function allows a few customizations by adding further arguments within the parentheses as follows:
+    1.  `col = "name_of_color"` for a single curve and `col = c("name_of_color_1", "name_of_color_2",...)` for multiple curves. The names of colors accepted in R can be found [here](https://www.stat.ubc.ca/~jenny/STAT545A/r.col.white.bkgd.pdf) or [here](https://www.stat.ubc.ca/~jenny/STAT545A/r.col.black.bkgd.pdf). Choose your favorite ones!
+    2.  `xlim` and `ylim` can be used to changed the default limits of x and y axes respectively. E.g. `ylim = c(0.1, 1)` will change the start of y-axis to 0.1 and the end to 1.
+    3.  `xlab` and `ylab` can be used to change the default labels of x and y axes respectively. E.g. `xlab = "X axis"` will change the default label of x-axis to "X axis".
+    4.  `title = "Title of the plot"` will give a title to the plot.
+    5.  `pch = shape_number` or `pch = "shape_character` can change the shape of the points in the curve. You can either enter an integer, or a character within quotes, as mentioned [here](https://r-charts.com/base-r/pch-symbols/) in the section "pch symbols list".
+-   Here is a plot with all of the customization:
+
+```{r, fig.dim = c(8, 6)}
+plotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N",
+            col = c("red", "blue", "darkgreen", "steelblue"), pch = 4, ylim = c(0.01, 1),
+            xlab = "X-axis", ylab = "Y-axis", title = "Cell Survival Curves")
+```
+
+#### Other options
+
+-   The default model fitting and plating efficiency methods can be changed for all these plots as well, as described in the "Fitting the linear quadratic model" section:
+
+```{r eval=FALSE}
+plotCSCurve(datatab, "control-B", method = "franken", PEmethod = "fix")
+```
+
+## Plotting using `ggplotCSCurve()`
+
+-   This is the recommended function for plotting the cell survival curves. Instead of the regular curves shown above, the `ggplotCSCurve()` function plots them using `ggplot()`.
+-   For plotting the default `ggplotCSCurve()` plots, the arguments are exactly similar to the `plotCSCurve()` function, for both single and multiple curves.
+
+### Individual curves
+
+```{r, fig.dim = c(8, 6)}
+ggplotCSCurve(datatab, "shCASP8-NT")
+```
+
+### Multiple curves
+
+```{r, fig.dim = c(8, 6)}
+ggplotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N")
+```
+
+### Customizing the plots
+
+-   The customization allowed by this function are more comprehensive in range:
+    1.  `colors` argument lets you change the default colors of the curves. It must be passed similarly as the `col` argument of `plotCSCurve()`: `colors = "name_of_color"` for a single curve and `colors = c("name_of_color_1", "name_of_color_2",...)` for multiple curves. The names of colors accepted in R can be found [here](https://www.stat.ubc.ca/~jenny/STAT545A/r.col.white.bkgd.pdf) or [here](https://www.stat.ubc.ca/~jenny/STAT545A/r.col.black.bkgd.pdf). Choose your favorite ones! Note: The number of colors chosen should be equal to or more than the number of cell types passed as arguments. If no colors are chosen by the user, the function chooses them by random and they might change with each plotting. Also, the sequence in which the colors are entered is matched with the sequence of the cell types. So, the first color entered is assigned to the first cell type, and so on.
+    2.  `title` gives a title to the plot. Default is `""`. E.g. `title = "Cell Survival Curves"` provides a title to the plot "Cell Survival Curves".
+    3.  `title_size` accepts an integer and changes the font size of the title. E.g. `title_size = 12`.
+    4.  `title_color` changes the font color of the title. E.g. `title_color = "red"`.
+    5.  `title_face` changes the font face of the title. Accepted arguments are `"plain"`/`"bold"`/`"italic"`/`"bold.italic"`. Default is `"plain"`. E.g. `title_face = "bold.italic"`.
+    6.  `title_align` changes the alignment/justification of the plot title. Accepts `"left`, `"center"`, and `"right"`. Default is `"center"`.
+    7.  `subtitle = "Subtitle"` gives a subtitle to the plot. The font size, color, face, and alignment can be changed by `sub_size`, `sub_color`, `sub_face`, and `sub_align` respectively, similar to the title of the plot.
+    8.  `xlab` and `ylab` can be used to change the default labels of x and y axes respectively. E.g. `xlab = "X axis"` will change the default label of x-axis to "X axis". The default label for X-axis is `"Dose(Gy)`, and that for the Y-axis is `"Survivng Fraction"`. The font size, color, and face of the x-axis label can be changed by `xlab_size`, `xlab_color`, and `xlab_face` respectively, and that of the y-axis label can be changed by `ylab_size`, `ylab_color`, and `ylab_face` respectively, similar to the title of the plot. The default values for these, both for the X and Y axes, are `16`, `"black"`, and `"bold"`.
+    9.  `legend_pos` can be used to control the position of the legend. Default is `"inside"`, which puts the legend in the bottom left of the figure. If `"outside'`, then puts it outside on the right of the figure, and if `"none"`, then removes it.
+    10. `legend_title` adds a title for the legend; default is `""`. E.g. `legend_title = "Cell types"` changes the legend title to "Cell types". The font size, color, face, and alignment of the legend title can be changed by `ltitle_size`, `ltitle_color`, `ltitle_face`, and `ltitle_align` respectively, similar to the plot title. The default values for these are `20`, `"black"`, `"bold"`, and `"left"` respectively.
+    11. `ltext_size`, `ltext_color`, and `ltext_face` change the font size, color, and face of the texts in the legend respectively. The default values are `18`, `"black"`, and `"bold"`.
+    12. `xtext_size`, `xtext_color`, and `xtext_face` change the font size, color, and face of the x-axis tick labels respectively. The default values are `14`, `"black"`, and `"bold"`.
+    13. `ytext_size`, `ytext_color`, and `ytext_face` change the font size, color, and face of the y-axis tick labels respectively. The default values are `14`, `"black"`, and `"bold"`.
+    14. `point_shape` accepts an integer or character similarly as `pch` in `plotCSCurve()` to change the shape of the points in the plot. You can either enter an integer, or a character within quotes, as mentioned [here](https://r-charts.com/base-r/pch-symbols/) in the section "pch symbols list". Default is `16`.
+    15. `point_size` accepts an integer and determines the size of the points in the plot. Default is `3.5`.
+    16. `curve_type` and `segment_type` accept integers, or characters within quotes, and determine the types of line used to plot the curve and the vertical line segment respectively. The type of lines accepted by R can be found [here](https://r-charts.com/base-r/line-types/), under the section "Line types". The default values of both are `1`.
+    17. `curve_width` and `segment_width` accept numbers and determine the widths of the curve and the vertical line segment respectively. The default values are `1.5` and `1` respectively.
+    18. `theme` will determine the theme of the plot. The theme should be entered in the following manner: `theme = package::theme_name()`. A good list of themes can be found [here](https://r-charts.com/ggplot2/themes/). The default value is `ggplot2::theme_bw()`.
+    19. `ybreaks` accept a vector of numbers denoting the breaks in y-axis: `ybreaks = c(break1, break2, ...)`. These list of breaks or ticks will appear on the plot. The default values are chosen automatically by `ggplot()`. Plots with same `ybreaks` and `ylim` are easier to compare.
+    20. `ylim` can be used to changed the default limits of x and y axes respectively. E.g. `ylim = c(0.1, 1)` will change the start of y-axis to 0.1 and the end to 1. The default values are chosen automatically by `ggplot()`. Plots with same `ybreaks` and `ylim` are easier to compare.
+    21. `save = "yes"` saves the plot in the specified path, format, and size. Default is `"no"`.
+    22. `save_path` can be used to specify the path where the plot is to be saved. E.g. `save_path = "C:/User1/Desktop"`. If nothing is specified, the plot is saved in the current working directory obtained by `getwd()`.
+    23. `save_filename` can be used to specify the desired file name and extension of the plot to be saved. Accepts most common extensions, including `".pdf"`, `".jpeg"`, and `".png"`. Default is `"myplot.pdf`.
+    24. `plot_height` and `plot_width` is used to specify the size of the plot to be saved. `units` allows to specify the unit of the measurements, and accepts `"in"`, `"cm"`, `"mm"`, or `"px"`. The default for the height is `4`, width is `5`, and units is `"in"`.
+-   Many of these customizations are used below to customize the figure above:
+
+```{r, fig.dim = c(8, 6)}
+ggplotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N",
+              colors = c("red", "blue", "darkgreen", "steelblue"),
+              title = "Cell Survival Curves", title_size = 20, title_color = "darkgreen", 
+              title_align = "left", subtitle = "CellSurvAssay", sub_color = "steelblue", 
+              sub_align = "left", xlab = "X-axis", xlab_color = "red", xlab_size = 14, 
+              xlab_face = "bold.italic", ylab = "Y-axis", ylab_color = "red", ylab_size = 14,
+              ylab_face = "bold.italic",
+              xtext_color = "purple", ytext_color = "purple", 
+              legend_title = "Cell types", ltitle_size = 15, legend_back = "gray", 
+              legend_border = "black", legend_border_width = 0.5, ltitle_align = "center",
+              point_shape = 15, point_size = 1, segment_width = 1, segment_type = 1,
+              curve_width = 1.1, curve_type = 1,
+              theme = ggplot2::theme_test())
+```
+
+-   Here is an example explaining the syntax to save a plot:
+
+```{r eval=FALSE}
+ggplotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N",
+              save = "Yes", plot_height = 4, plot_width = 5, units = "in",
+              save_path = "C:/User1/desktop", save_filename = "Plot.pdf")
+```
+
+#### Another way of customizing the `ggplotCSCurve()` plots
+
+-   The layered grammar of graphics of `ggplot()` allows users to add any number of layers to a `ggplot` object. This property can be used as an advantage to add customization to a `ggplotCSCurve()` plot.
+-   For example, though we can use `legend_pos = "none"` to remove the legend, we can do the same in the following manner:
+
+```{r, fig.dim = c(8, 6)}
+library(ggplot2)
+ggplotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N") +
+  theme(legend.position = "none")
+```
+
+-   This option is helpful when you want to add any customization which is not accepted by `ggplotCSCurve()`.
+-   Please note that these layers can only be added in the format acceptable by `ggplot()`, and the `ggplot2` package should be loaded in memory using `library(ggplot2)` as above.
+
+#### Other options
+
+-   The default model fitting and plating efficiency methods can be changed in all these plots as well, by adding further arguments within the parentheses as described in the above sections.
+
+# Comparing two curves
+
+-   The `compareCurves()` function helps us statistically compare two curves. It prints the ANOVA results.
+-   The null hypothesis is that the parameters $\alpha$ and $\beta$ of both the models are independent of the two curves, while the alternate hypothesis is that the parameters are different.
+-   Within parenthesis, enter the name of the data set, and then enter the names of the two cell types that are being compared:
+
+```{r}
+compareCurves(datatab, "shCASP8-N", "shCASP8-B+Z+N")
+```
+
+#### Other options
+
+-   The default model fitting and plating efficiency methods can be changed here as well, by adding further arguments within the parenthesis as described in the above sections.
+
+# Calculating Dose Enhancement Ratio
+
+-   The clonogenic assay can also determine cell survival fractions in combination treatments, but the additional treatment might influence the proliferation rate and modify the radiation dose-survival curve.
+-   Hence, in such situations, we must calculate the Dose Enhancement Ratio (DER), also known as Sensitizer Enhancement Ratio, Dose Modifying Factor, Dose Modifying Ratio, or Radiosenstitivity Enhancement Factor, as a parameter to quantify the differences between survival curves.
+-   The function `calculateDER()` calculates the Dose Enhancement Ratio.
+-   Within the parenthesis, enter the name of the data set followed by the "control" cell type (which will be in the numerator of the ratio), then the "treatment" cell type (which will be in the denominator of the ratio), and finally the survival fraction for which the DER is to be calculated.
+
+```{r}
+calculateDER(datatab, "shCASP8-NT", "shCASP8-N", 0.25)
+```
+
+-   Here, the DER of shCASP8-NT : shCASP8-N is 0.9456221.
+
+#### Other options
+
+-   The default model fitting and plating efficiency methods can be changed here as well, by adding further arguments within the parenthesis as described in the above sections.

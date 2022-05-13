@@ -1,0 +1,139 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r, echo=FALSE, out.width="200%", out.height="200%"}
+knitr::include_graphics("./man/figures/CellSurvAssay.png")
+```
+
+# CellSurvAssay
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+**CellSurvAssay** consists of a couple of tools that can be used to perform Clonogenic Survival Analysis in R very easily and efficiently. These two tools are:
+
+* CellSurvAssay R package: This helps even beginner R users to perform the analysis in R, while maintaining the flexibility of a package. 
+
+* CellSurvAssay Shiny app: This is a web application that helps users with no experience in R to perform the analysis, in R. The app is based on the CellSurvAssay R package and can be accessed [here](https://pickeringlab.shinyapps.io/CellSurvAssay-App). 
+
+# Purpose of the CellSurvAssay R package
+
+* This R package has been written around [CFAssay](https://bioconductor.org/packages/release/bioc/html/CFAssay.html), another R package that can be used to perform Cell Survival Assay analysis in R. However, **CellSurvAssay** has it's own purposes and advantages:
+    + it makes performing Clonogenic Survival Analysis in R incredibly user-friendly and efficient, even for beginner R users who don't have the luxury of time to dig deeper into R,
+    + it arranges all the commonly used steps of clonogenic assay analysis in one location and automates the data wrangling steps to the extent that only single lines of code suffice for each step of the analysis,
+    + it utilizes `ggplot()` to plot the cell survival curves, and builds better quality figures than other available R packages,
+    + it is less time consuming and more convenient for the user, as it accepts the raw data for the analysis and calculates the plating efficiencies by itself, unlike many automated software commonly used,
+    + it offers various method options for parameter estimation and calculating plating efficiencies, unlike most other available software tools, and
+    + as R is being utilized, the methodology stays open and the results reproducible.
+
+***
+
+*Below is just a quick workflow that can be used to perform Clonogenic Survival Analysis using this package. For more details on the functions, different method options for parameter estimation and calculation of plating efficiency, and customization of the figures, please refer to the package vignette.*
+
+***
+
+# Installing the package
+
+* The package is being shared through [GitHub](https://github.com/). Running the following set of codes installs and loads the package in R memory: 
+```{r results="hide"}
+# if installing from Bioconductor
+# install BiocManager, if required
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+# install CellSurvAssay
+BiocManager::install("CellSurvAssay")
+# load CellSurvAssay in R
+library(CellSurvAssay) 
+
+
+
+# if installing from GitHub
+# install devtools, if required
+if(!require(devtools)) {
+    install.packages("devtools")
+    library(devtools)
+}
+# install CellSurvAssay
+install_github("arunangshu-github/CellSurvAssay", build_vignettes = TRUE)
+# load CellSurvAssay in R memory
+library(CellSurvAssay)  
+```
+
+* This vignette can be accessed from R using the following command:
+
+```{r eval=FALSE}
+browseVignettes("CellSurvAssay")
+```
+
+# Importing the data set
+
+* The function `importData()` helps import the data set. 
+
+```{r eval=FALSE}
+datatab <- importData("path/to/file", "type of file")
+```
+
+* The package contains a data set that can be used to get familiar with the package. It can be imported in the R environment as below:
+
+```{r}
+datatab <- CellSurvAssay::CASP8_data
+```
+
+# Fitting the Linear Quadratic Model
+
+* The `lqmodelFit()` function helps fit the linear quadratic model for any cell type present in the imported data.
+
+```{r}
+lqmodelFit(datatab, "shCASP8-N")
+```
+
+# Plotting Cell Survival curves
+
+* The cell survival curves can be plotted using two different functions: `plotCSCurve()` and `ggplotCSCurve()`.
+* While the former gives the standard curves provided by the CFAssay package, the latter is preferred as it uses the widely popular `ggplot()` function of R to plot the curves, allowing all the customizations and better graphics. It also allows to easily download the figures plotted in the users' own specifications.
+
+### Individual curves
+
+```{r, fig.dim = c(8, 6)}
+ggplotCSCurve(datatab, "shCASP8-NT")
+```
+
+### Multiple curves
+
+```{r, fig.dim = c(8, 6)}
+ggplotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N")
+```
+
+# Comparing two curves
+
+* The `compareCurves()` function helps us statistically compare two curves. It prints the ANOVA results.
+* The null hypothesis is that the parameters $\alpha$ and $\beta$ of both the models are independent of the two curves, while the alternate hypothesis is that the parameters are different.
+
+```{r}
+compareCurves(datatab, "shCASP8-N", "shCASP8-B+Z+N")
+```
+
+# Calculating Dose Enhancement Ratio
+
+* The function `calculateDER()` calculates the Dose Enhancement Ratio.
+
+```{r}
+calculateDER(datatab, "shCASP8-NT", "shCASP8-N", 0.25)
+```
+
+* Here, the DER of shCASP8-NT : shCASP8-N is 0.9456221.
+
