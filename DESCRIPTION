@@ -17,7 +17,7 @@ Description: One of two tools that make Clonogenic Survival Analysis in R
     super easy and efficient, even for beginner R users.
 License: LGPL (>= 3)
 Depends: 
-    R (>= 4.2.0)
+    R (>= 3.6.0)
 Imports: 
     CFAssay (>= 1.30.0),
     dplyr (>= 1.0.9),
