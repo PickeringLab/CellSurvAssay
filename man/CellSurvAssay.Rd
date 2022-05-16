@@ -10,7 +10,15 @@ can be used for Clonogenic Survival Analysis analysis in R. However,
 CellSurvAssay has it’s own purposes and advantages:
 }
 \section{Purpose}{
- * it makes performing Clonogenic Survival Analysis in R
+
+\itemize{
+  \item it makes performing Clonogenic Survival Analysis in R ncredibly user-friendly and efficient, even for beginner R users who don't have the luxury of time to dig deeper into R,
+  \item it arranges all the commonly used steps of clonogenic assay analysis in one location and automates the data wrangling steps to the extent that only single lines of ode suffice for each step of the analysis,
+  \item
+}
+
+
+* it makes performing Clonogenic Survival Analysis in R
   incredibly user-friendly and efficient, even for beginner R users who don't
   have the luxury of time to dig deeper into R, * it arranges all the
   commonly used steps of clonogenic assay analysis in one location and
@@ -27,12 +35,13 @@ CellSurvAssay has it’s own purposes and advantages:
 }
 
 \section{Functions in the package}{
- * [importData()] imports the data set in R
-  * [lqmodelFit()] fits the linear quadratic model * [plotCSCurve()] plots a
-  regular cell survival curve * [ggplotCSCurve()] plots the cell survival
-  curves using \code{ggplot()} * [compareCurves()] statistically compares two
-  cell survival curves * [calculateDER()] calculates the Dose Enhancement
-  Ratio
+
+* [importData()] imports the data set in R
+* [lqmodelFit()] fits the linear quadratic model
+* [plotCSCurve()] plots a regular cell survival curve
+* [ggplotCSCurve()] plots the cell survival curves using \code{ggplot()}
+* [compareCurves()] statistically compares two cell survival curves
+* [calculateDER()] calculates the Dose Enhancement Ratio
 }
 
 \seealso{
