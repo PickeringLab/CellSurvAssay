@@ -72,7 +72,9 @@ if(!require(devtools)) {
     library(devtools)
 }
 # install CellSurvAssay
-install_github("arunangshu-github/CellSurvAssay", build_vignettes = TRUE)
+install_github("arunangshu-github/CellSurvAssay", 
+               build_vignettes = TRUE,
+               dependencies = TRUE)
 # load CellSurvAssay in R memory
 library(CellSurvAssay) 
 ```
