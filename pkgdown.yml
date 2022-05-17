@@ -1,0 +1,10 @@
+pandoc: 2.7.3
+pkgdown: 2.0.3
+pkgdown_sha: ~
+articles:
+  CellSurvAssay-Vignette: CellSurvAssay-Vignette.html
+last_built: 2022-05-17T00:18Z
+urls:
+  reference: https://arunangshu-github.github.io/CellSurvAssay/reference
+  article: https://arunangshu-github.github.io/CellSurvAssay/articles
+
