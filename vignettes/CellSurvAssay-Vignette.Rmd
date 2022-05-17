@@ -1,5 +1,5 @@
 ---
-title: "<center> CellSurvAssay <center>"
+title: "CellSurvAssay"
 subtitle: "<center> Clonogenic Survival Analysis in R made easy! <center><br>"
 date: "<center> _`r Sys.Date()`_ <center>"
 author:
@@ -32,9 +32,9 @@ library(CellSurvAssay)
 
 **CellSurvAssay** consists of a couple of tools that can be used to perform Clonogenic Survival Analysis in R very easily and efficiently. These two tools are:
 
--   CellSurvAssay R package: This helps even beginner R users to perform the analysis in R, while maintaining the flexibility of a package.
+-   **CellSurvAssay R package**: This helps even beginner R users to perform the analysis in R, while maintaining the flexibility of a package.
 
--   CellSurvAssay Shiny app: This is a web application that helps users with no experience in R to perform the analysis, in R. The app is based on the CellSurvAssay R package and can be accessed [here](https://pickeringlab.shinyapps.io/CellSurvAssay-App).
+-   **CellSurvAssay Shiny app**: This is a web application that helps users with no experience in R to perform the analysis, in R. The app is based on the CellSurvAssay R package and can be accessed [here](https://pickeringlab.shinyapps.io/CellSurvAssay-App).
 
 This document is the vignette that accompanies with the R package, and describes comprehensively how the package works and how it can be used to perform the analysis. For details on the Shiny app, please access it and refer to its Help pages. For more details on both of these tools and methodologies, please refer to (cite our paper).
 

@@ -34,4 +34,6 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://arunangshu-github.github.io/CellSurvAssay/
+URL: https://github.com/arunangshu-github/CellSurvAssay, https://arunangshu-github.github.io/CellSurvAssay/
+BugReports: https://github.com/arunangshu-github/CellSurvAssay/issues
+

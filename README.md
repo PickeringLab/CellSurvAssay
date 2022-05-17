@@ -12,12 +12,13 @@
 perform Clonogenic Survival Analysis in R very easily and efficiently.
 These two tools are:
 
--   CellSurvAssay R package: This helps even beginner R users to perform
-    the analysis in R, while maintaining the flexibility of a package.
+-   **CellSurvAssay R package**: This helps even beginner R users to
+    perform the analysis in R, while maintaining the flexibility of a
+    package.
 
--   CellSurvAssay Shiny app: This is a web application that helps users
-    with no experience in R to perform the analysis, in R. The app is
-    based on the CellSurvAssay R package and can be accessed
+-   **CellSurvAssay Shiny app**: This is a web application that helps
+    users with no experience in R to perform the analysis, in R. The app
+    is based on the CellSurvAssay R package and can be accessed
     [here](https://pickeringlab.shinyapps.io/CellSurvAssay-App).
 
 # Purpose of the CellSurvAssay R package
