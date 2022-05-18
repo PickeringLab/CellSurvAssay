@@ -40,13 +40,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
+  <a class="nav-link" href="articles/CellSurvAssay.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/CellSurvAssay-Vignette.html">CellSurvAssay</a>
-  </div>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -141,6 +141,8 @@
 <ul><li>The <code><a href="reference/lqmodelFit.html">lqmodelFit()</a></code> function helps fit the linear quadratic model for any cell type present in the imported data.</li></ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/lqmodelFit.html">lqmodelFit</a></span><span class="op">(</span><span class="va">datatab</span>, <span class="st">"shCASP8-N"</span><span class="op">)</span>
+<span class="co">#&gt; ****** Cell type: shCASP8-N ******</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; *** Coefficients of LQ-model for cell survival *** </span>
 <span class="co">#&gt; method = ml </span>
 <span class="co">#&gt; PEmethod = fit </span>
@@ -172,7 +174,9 @@
 <span class="co">#&gt;   Experiment rssw perCent</span>
 <span class="co">#&gt; 1          1 1.47    14.3</span>
 <span class="co">#&gt; 2          2 1.08    10.5</span>
-<span class="co">#&gt; 3          3 7.74    75.3</span></code></pre></div>
+<span class="co">#&gt; 3          3 7.74    75.3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; *** Analysis by CellSurvAssay v1.0.0 ***</span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="plotting-cell-survival-curves">Plotting Cell Survival curves<a class="anchor" aria-label="anchor" href="#plotting-cell-survival-curves"></a>
@@ -205,6 +209,8 @@
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/compareCurves.html">compareCurves</a></span><span class="op">(</span><span class="va">datatab</span>, <span class="st">"shCASP8-N"</span>, <span class="st">"shCASP8-B+Z+N"</span><span class="op">)</span>
+<span class="co">#&gt; ****** Cell type 1: shCASP8-N   ||   Cell type 2: shCASP8-B+Z+N ******</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; Overall comparison test for coefficients alpha and beta of LQ-models </span>
 <span class="co">#&gt; ==================================================================== </span>
 <span class="co">#&gt; method = ml </span>
@@ -241,7 +247,9 @@
 <span class="co">#&gt; Model 2 versus Model 1</span>
 <span class="co">#&gt;   Resid. Df Resid. Dev Df Deviance      F Pr(&gt;F)</span>
 <span class="co">#&gt; 1        16     12.856                          </span>
-<span class="co">#&gt; 2        14     12.606  2  0.24975 0.1355 0.8744</span></code></pre></div>
+<span class="co">#&gt; 2        14     12.606  2  0.24975 0.1355 0.8744</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; *** Analysis by CellSurvAssay v1.0.0 ***</span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="calculating-dose-enhancement-ratio">Calculating Dose Enhancement Ratio<a class="anchor" aria-label="anchor" href="#calculating-dose-enhancement-ratio"></a>
@@ -249,7 +257,16 @@
 <ul><li>The function <code><a href="reference/calculateDER.html">calculateDER()</a></code> calculates the Dose Enhancement Ratio.</li></ul>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/calculateDER.html">calculateDER</a></span><span class="op">(</span><span class="va">datatab</span>, <span class="st">"shCASP8-NT"</span>, <span class="st">"shCASP8-N"</span>, <span class="fl">0.25</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.9456221</span></code></pre></div>
+<span class="co">#&gt; *** Dose Enhancement Ratio ***</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; control = shCASP8-NT</span>
+<span class="co">#&gt; treatment = shCASP8-N</span>
+<span class="co">#&gt; survival fraction = 0.25</span>
+<span class="co">#&gt; method = ml</span>
+<span class="co">#&gt; PEmethod = fit</span>
+<span class="co">#&gt; DER = 0.945622065301553</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; *** Analysis by CellSurvAssay v1.0.0 ***</span></code></pre></div>
 <ul><li>Here, the DER of shCASP8-NT : shCASP8-N is 0.9456221.</li></ul>
 </div>
 
