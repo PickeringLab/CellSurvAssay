@@ -90,8 +90,8 @@ utils::globalVariables(c("cline", "alpha", "d", "pts", "ctype", "pts_minus_sems"
 
 .quadraticFunction <- function(a, b, c) {
   if(delta(a, b, c) > 0) {
-    x_1 = (-b + sqrt(delta(a, b, c)))/(2*a)
-    x_2 = (-b - sqrt(delta(a, b, c)))/(2*a)
+    x_1 <- (-b + sqrt(delta(a, b, c)))/(2*a)
+    x_2 <- (-b - sqrt(delta(a, b, c)))/(2*a)
     if (x_1 >= 0 & x_2 >= 0) {
       z <- readline(prompt = paste("There are two positive roots: a)", x_1, "& b)", x_2, ". Which one do you want the DER for? (please enter a/b): "))
       if (z == "a") {
