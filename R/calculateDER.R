@@ -38,7 +38,7 @@ calculateDER <- function(data, control, treatment, S, method = "ml", PEmethod = 
   D_treatment <- .quadraticFunction(beta_treatment, alpha_treatment, log(S))
   DER <- D_control/D_treatment
   DER <- D_control/D_treatment
-  results <- paste0("*** Dose enhancement Ratio ***\n", "control = ", control, "\ntreatment = ", treatment,
+  results <- paste0("*** Dose Enhancement Ratio ***\n", "control = ", control, "\ntreatment = ", treatment,
                     "\nsurvival fraction = ", S, "\nmethod = ", method, "\npe method = ", PEmethod,
                     "\nDER = ", DER,
                     "\n\n*** Analysis by CellSurvAssay v1.0.0 ***")

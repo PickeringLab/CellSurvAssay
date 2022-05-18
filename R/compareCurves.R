@@ -26,7 +26,7 @@
 #' @export
 compareCurves <- function(data, cline1, cline2, method = "ml", PEmethod = "fit") {
   invisible(utils::capture.output(fit <- CFAssay::cellsurvLQdiff(data[c(which(data$cline == cline1), which(data$cline == cline2)),], curvevar = "cline", method = method, PEmethod = PEmethod)))
-  intro <- paste0("****** Cell type 1: ", cline1, "   ||   Cell type 2: ", cline2, " ******\n")
+  intro <- paste0("****** Cell type 1: ", cline1, "   ||   Cell type 2: ", cline2, " ******\n\n")
   end <- paste("\n*** Analysis by CellSurvAssay v1.0.0 ***")
   cat(intro)
   print(fit)
