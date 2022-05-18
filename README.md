@@ -117,6 +117,8 @@ datatab <- CellSurvAssay::CASP8_data
 
 ``` r
 lqmodelFit(datatab, "shCASP8-N")
+#> ****** Cell type: shCASP8-N ******
+#> 
 #> *** Coefficients of LQ-model for cell survival *** 
 #> method = ml 
 #> PEmethod = fit 
@@ -149,6 +151,8 @@ lqmodelFit(datatab, "shCASP8-N")
 #> 1          1 1.47    14.3
 #> 2          2 1.08    10.5
 #> 3          3 7.74    75.3
+#> 
+#> *** Analysis by CellSurvAssay v1.0.0 ***
 ```
 
 # Plotting Cell Survival curves
@@ -190,6 +194,8 @@ ggplotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N"
 
 ``` r
 compareCurves(datatab, "shCASP8-N", "shCASP8-B+Z+N")
+#> ****** Cell type 1: shCASP8-N   ||   Cell type 2: shCASP8-B+Z+N ******
+#> 
 #> Overall comparison test for coefficients alpha and beta of LQ-models 
 #> ==================================================================== 
 #> method = ml 
@@ -227,6 +233,8 @@ compareCurves(datatab, "shCASP8-N", "shCASP8-B+Z+N")
 #>   Resid. Df Resid. Dev Df Deviance      F Pr(>F)
 #> 1        16     12.856                          
 #> 2        14     12.606  2  0.24975 0.1355 0.8744
+#> 
+#> *** Analysis by CellSurvAssay v1.0.0 ***
 ```
 
 # Calculating Dose Enhancement Ratio
@@ -235,7 +243,16 @@ compareCurves(datatab, "shCASP8-N", "shCASP8-B+Z+N")
 
 ``` r
 calculateDER(datatab, "shCASP8-NT", "shCASP8-N", 0.25)
-#> [1] 0.9456221
+#> *** Dose Enhancement Ratio ***
+#> 
+#> control = shCASP8-NT
+#> treatment = shCASP8-N
+#> survival fraction = 0.25
+#> method = ml
+#> PEmethod = fit
+#> DER = 0.945622065301553
+#> 
+#> *** Analysis by CellSurvAssay v1.0.0 ***
 ```
 
 -   Here, the DER of shCASP8-NT : shCASP8-N is 0.9456221.

@@ -20,7 +20,7 @@ more details about the method of the fit."><!-- mathjax --><script src="https://
     
     <a class="navbar-brand me-2" href="../index.html">CellSurvAssay</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +28,14 @@ more details about the method of the fit."><!-- mathjax --><script src="https://
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/CellSurvAssay.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/CellSurvAssay-Vignette.html">CellSurvAssay</a>
-  </div>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -98,6 +98,8 @@ uses fixed ones calculated from the observed zero dose data.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">datatab</span> <span class="op">&lt;-</span> <span class="va">CASP8_data</span></span>
 <span class="r-in"><span class="fu">lqmodelFit</span><span class="op">(</span><span class="va">datatab</span>, <span class="st">"control-B"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ****** Cell type: control-B ******</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> *** Coefficients of LQ-model for cell survival *** </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> method = ml </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PEmethod = fit </span>
@@ -130,7 +132,11 @@ uses fixed ones calculated from the observed zero dose data.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 0.65     9.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2          2 0.82    12.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3          3 5.37    78.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Analysis by CellSurvAssay v1.0.0 ***</span>
 <span class="r-in"><span class="fu">lqmodelFit</span><span class="op">(</span><span class="va">datatab</span>, <span class="st">"control-B"</span>, method <span class="op">=</span> <span class="st">"ls"</span>, PEmethod <span class="op">=</span> <span class="st">"fix"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ****** Cell type: control-B ******</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> *** Coefficients of LQ-model for cell survival *** </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> method = ls </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PEmethod = fix </span>
@@ -149,6 +155,8 @@ uses fixed ones calculated from the observed zero dose data.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 0.03    31.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2          2 0.00     5.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3          3 0.05    63.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Analysis by CellSurvAssay v1.0.0 ***</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, echo=FALSE, out.width="200%", out.height="200%"}
+```{r, echo = FALSE, out.width = "200%", out.height = "200%"}
 knitr::include_graphics("./man/figures/CellSurvAssay.png")
 ```
 
