@@ -235,6 +235,9 @@ working directory obtained by \code{getwd()}.}
 the common extensions, including \code{.pdf}, \code{.jpeg}, and
 \code{.png}.}
 }
+\value{
+A \code{ggplot} object.
+}
 \description{
 This function helps to plot the cell survival curves using \code{ggplot()},
 and is the recommended way to plot this curves over

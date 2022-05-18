@@ -124,6 +124,7 @@
 #'   mentioned. Accepts \code{"in"}, \code{"cm"}, \code{"mm"}, or \code{"px"}.
 #'   Default is \code{"in"}.
 #' @importFrom magrittr %>%
+#' @return A \code{ggplot} object.
 #' @examples
 #' datatab <- CASP8_data
 #'

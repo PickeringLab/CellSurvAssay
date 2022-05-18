@@ -360,3 +360,10 @@ calculateDER(datatab, "shCASP8-NT", "shCASP8-N", 0.25)
 #### Other options
 
 -   The default model fitting and plating efficiency methods can be changed here as well, by adding further arguments within the parenthesis as described in the above sections.
+
+# Session Information
+
+```{r}
+sessionInfo()
+```
+

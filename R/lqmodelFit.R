@@ -25,5 +25,9 @@
 #' @export
 lqmodelFit <- function(data, ctype, method = "ml", PEmethod = "fit") {
   invisible(utils::capture.output(fit <- CFAssay::cellsurvLQfit(subset(data, cline == ctype), method = method, PEmethod = PEmethod)))
-  return(fit)
+  intro <- paste0("****** Cell type: ", ctype, " ******\n")
+  end <- paste("\n*** Analysis by CellSurvAssay v1.0.0 ***")
+  cat(intro)
+  print(fit)
+  cat(end)
 }

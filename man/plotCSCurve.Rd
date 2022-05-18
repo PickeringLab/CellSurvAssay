@@ -48,6 +48,9 @@ vector should be equal to the number of cell types entered.}
 
 \item{pch}{An integer denoting the shape of the points in the plot.}
 }
+\value{
+A \code{plot} object.
+}
 \description{
 This is one of the two functions that helps to plot the cell survival curves.
 It plots the curves, both for one cell type or multiple cell types, without
@@ -74,7 +77,6 @@ plotCSCurve(datatab, "control-B", "control-NT")
 
 plotCSCurve(datatab, "shCASP8-N", "shCASP8-B+Z+N", "control-B", col = c("red", "blue", "purple"),
 pch = 4, ylim = c(0.1, 1), xlab = "X-axis", ylab = "Y-axis", title = "Multiple Curves")
-
 }
 \seealso{
 [ggplotCSCurve()]

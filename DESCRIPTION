@@ -1,7 +1,7 @@
 Type: Package
 Package: CellSurvAssay
 Title: Clonogenic Survival Analysis in R made easy!
-Version: 0.1.0
+Version: 0.99.0
 Authors@R: c(
     person("Arunangshu", "Sarkar", , "arunangshu.sarkar@cuanschutz.edu", role = c("aut", "cre")),
     person("Curtis", "Pickering", , "crpickering@mdanderson.org", role = "aut"),
@@ -12,9 +12,9 @@ Authors@R: c(
     person("Burak", "Uzunparmak", , "buzunparmak@mdanderson.org", role = "ctb"),
     person("Thomaia", "Pamplin", , "tpamplin@mdanderson.org", role = "ctb")
   )
-Maintainer: Arunangshu Sarkar <arunangshu.sarkar@cuanschutz.edu>
 Description: One of two tools that make Clonogenic Survival Analysis in R
-    super easy and efficient, even for beginner R users.
+    super easy and efficient, even for beginner R users. For more description regarding the CellSurvAssay R package , visit https://arunangshu-github.github.io/CellSurvAssay/, 
+    and for the CellSurvAssay Shiny app, visit https://pickeringlab.shinyapps.io/CellSurvAssay-App. 
 License: LGPL (>= 3)
 Depends: 
     R (>= 2.10)
@@ -23,17 +23,17 @@ Imports:
     dplyr,
     ggplot2,
     magrittr,
+    methods,
     randomcoloR,
     readr,
     readxl
-biocViews:
+biocViews: CellBasedAssays, CellBiology, ImmunoOncology, Regression, Survival
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.0
 Suggests: 
     knitr,
     rmarkdown
-VignetteBuilder: knitr
 URL: https://github.com/arunangshu-github/CellSurvAssay, https://arunangshu-github.github.io/CellSurvAssay/
 BugReports: https://github.com/arunangshu-github/CellSurvAssay/issues
-
+VignetteBuilder: knitr

@@ -27,6 +27,7 @@
 #' @param ylab A string denoting the label of y-axis.
 #' @param title A string denoting the title of the plot.
 #' @param pch An integer denoting the shape of the points in the plot.
+#' @return A \code{plot} object.
 #' @examples
 #' datatab <- CASP8_data
 #'
@@ -43,7 +44,7 @@
 #'
 #' plotCSCurve(datatab, "shCASP8-N", "shCASP8-B+Z+N", "control-B", col = c("red", "blue", "purple"),
 #' pch = 4, ylim = c(0.1, 1), xlab = "X-axis", ylab = "Y-axis", title = "Multiple Curves")
-#'
+#' @importFrom methods is
 #' @seealso [ggplotCSCurve()]
 #' @export
 plotCSCurve <- function(data, ..., method = "ml", PEmethod = "fit", col = NULL, xlim = NULL, ylim = c(0.008, 1),
@@ -58,7 +59,7 @@ plotCSCurve <- function(data, ..., method = "ml", PEmethod = "fit", col = NULL, 
                                     ...)
   {
     fit <- x
-    if (!class(fit) == "cellsurvLQfit")
+    if (!is(x, "cellsurvLQfit"))
       stop("Fit object not of class 'cellsurvLQfit'!")
     data <- fit$data
     data$dose2 <- data$dose^2
