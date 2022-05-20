@@ -107,7 +107,7 @@ datatab <- importData("path/to/file", "type of file")
     with the package. It can be imported in the R environment as below:
 
 ``` r
-datatab <- CellSurvAssay::CASP8_data
+datatab <- CASP8_data
 ```
 
 # Fitting the Linear Quadratic Model
@@ -152,7 +152,7 @@ lqmodelFit(datatab, "shCASP8-N")
 #> 2          2 1.08    10.5
 #> 3          3 7.74    75.3
 #> 
-#> *** Analysis by CellSurvAssay v1.0.0 ***
+#> *** Analysis by CellSurvAssay v0.99.0 ***
 ```
 
 # Plotting Cell Survival curves
@@ -234,7 +234,7 @@ compareCurves(datatab, "shCASP8-N", "shCASP8-B+Z+N")
 #> 1        16     12.856                          
 #> 2        14     12.606  2  0.24975 0.1355 0.8744
 #> 
-#> *** Analysis by CellSurvAssay v1.0.0 ***
+#> *** Analysis by CellSurvAssay v0.99.0 ***
 ```
 
 # Calculating Dose Enhancement Ratio
@@ -252,7 +252,7 @@ calculateDER(datatab, "shCASP8-NT", "shCASP8-N", 0.25)
 #> PEmethod = fit
 #> DER = 0.945622065301553
 #> 
-#> *** Analysis by CellSurvAssay v1.0.0 ***
+#> *** Analysis by CellSurvAssay v0.99.0 ***
 ```
 
 -   Here, the DER of shCASP8-NT : shCASP8-N is 0.9456221.

@@ -92,7 +92,7 @@ datatab <- importData("path/to/file", "type of file")
 * The package contains a data set that can be used to get familiar with the package. It can be imported in the R environment as below:
 
 ```{r}
-datatab <- CellSurvAssay::CASP8_data
+datatab <- CASP8_data
 ```
 
 # Fitting the Linear Quadratic Model
