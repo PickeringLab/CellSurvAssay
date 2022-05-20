@@ -1,14 +1,17 @@
 ---
-title: "<center>CellSurvAssay<center>"
-subtitle: "<center>Clonogenic Survival Analysis in R made easy!<center><br>"
-date: " <center>_`r Sys.Date()`_<center><br>"
+title: "CellSurvAssay"
+subtitle: "Clonogenic Survival Analysis in R made easy!<br>"
+date: "<center>_`r Sys.Date()`_<center>"
 author:
-  - name: "<center>Arunangshu Sarkar<center>"
-    email: "<center>arunangshu.sarkar@cuanschutz.edu<center>"
+  - name: "<br><center>Arunangshu Sarkar<center>"
+    email: "<center>Arunangshu[dot]Sarkar[at]CUAnschutz[dot]edu<center>"
 output: 
   rmarkdown::html_document:
     toc: true
     toc_depth: 2
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
 vignette: >
   %\VignetteIndexEntry{CellSurvAssay}
   %\VignetteEngine{knitr::rmarkdown}
@@ -366,4 +369,3 @@ calculateDER(datatab, "shCASP8-NT", "shCASP8-N", 0.25)
 ```{r}
 sessionInfo()
 ```
-

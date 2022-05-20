@@ -41,6 +41,6 @@ calculateDER <- function(data, control, treatment, S, method = "ml", PEmethod = 
   results <- paste0("*** Dose Enhancement Ratio ***\n\n", "control = ", control, "\ntreatment = ", treatment,
                     "\nsurvival fraction = ", S, "\nmethod = ", method, "\nPEmethod = ", PEmethod,
                     "\nDER = ", DER,
-                    "\n\n*** Analysis by CellSurvAssay v1.0.0 ***")
+                    "\n\n*** Analysis by CellSurvAssay v", utils::packageVersion("CellSurvAssay"), " ***")
   cat(results)
 }
