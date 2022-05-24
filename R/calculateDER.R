@@ -28,6 +28,9 @@ calculateDER <- function(data, control, treatment, S, method = "ml", PEmethod = 
 
   control_data <- subset(data, cline == control)
   treatment_data <- subset(data, cline == treatment)
+  if (method == "franken") {
+    PEmethod <- "fix"
+  }
   invisible(utils::capture.output(fit_control <- CFAssay::cellsurvLQfit(control_data, method = method, PEmethod = PEmethod)))
   invisible(utils::capture.output(fit_treatment <- CFAssay::cellsurvLQfit(treatment_data, method = method, PEmethod = PEmethod)))
   alpha_control <- fit_control$coefficients[["dose"]] * (-1)
