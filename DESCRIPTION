@@ -34,6 +34,7 @@ RoxygenNote: 7.2.0
 Suggests: 
     knitr,
     rmarkdown
-URL: https://github.com/arunangshu-github/CellSurvAssay, https://arunangshu-github.github.io/CellSurvAssay/
-BugReports: https://github.com/arunangshu-github/CellSurvAssay/issues
+URL: https://github.com/pickeringlab/CellSurvAssay,
+    https://pickeringlab.github.io/CellSurvAssay/
+BugReports: https://github.com/pickeringlab/CellSurvAssay/issues
 VignetteBuilder: knitr

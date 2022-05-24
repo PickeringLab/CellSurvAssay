@@ -59,9 +59,10 @@ the package vignette.*
 
 # Installing the package
 
--   The package is being shared through [GitHub](https://github.com/).
-    Running the following set of codes installs and loads the package in
-    R memory:
+-   The package is being shared through
+    [Bioconductor](https://www.bioconductor.org/) and
+    [GitHub](https://github.com/). Running the following set of codes
+    installs and loads the package in R memory:
 
 ``` r
 # if installing from Bioconductor
@@ -82,7 +83,7 @@ if(!require(devtools)) {
     library(devtools)
 }
 # install CellSurvAssay
-install_github("arunangshu-github/CellSurvAssay", 
+install_github("pickeringlab/CellSurvAssay", 
                build_vignettes = TRUE,
                dependencies = TRUE)
 # load CellSurvAssay in R memory
