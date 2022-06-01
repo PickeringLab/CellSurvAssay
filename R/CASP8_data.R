@@ -13,5 +13,4 @@
 #' }
 #' @examples
 #' datatab <- CASP8_data
-#'
 "CASP8_data"

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplotCSCurve.R
 \name{ggplotCSCurve}
 \alias{ggplotCSCurve}
-\title{Plots Cell Survival Curves using \code{ggplot()}}
+\title{Plots Cell Survival Curves using \code{\link[ggplot2]{ggplot}}}
 \usage{
 ggplotCSCurve(
   data,
@@ -239,11 +239,11 @@ the common extensions, including \code{.pdf}, \code{.jpeg}, and
 A \code{ggplot} object.
 }
 \description{
-This function helps to plot the cell survival curves using \code{ggplot()},
-and is the recommended way to plot this curves over
-\code{\link{plotCSCurve}}. A single function plots the curves, both for a
-single or multiple cell type(s), and allows most of the options necessary to
-customize the figures for publication.
+This function helps to plot the cell survival curves using
+\code{\link[ggplot2]{ggplot}}, and is the recommended way to plot this curves
+over \code{\link{plotCSCurve}}. A single function plots the curves, both for
+a single or multiple cell type(s), and allows most of the options necessary
+to customize the figures for publication.
 }
 \examples{
 datatab <- CASP8_data
@@ -274,5 +274,5 @@ ggplotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N"
 
 }
 \seealso{
-Please also refer to [plotCSCurve()] for regular plots.
+Please also refer to \code{\link{plotCSCurve}} for regular plots.
 }

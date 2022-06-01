@@ -22,6 +22,5 @@ This is an example data set provided with the R package
 }
 \examples{
 datatab <- CASP8_data
-
 }
 \keyword{datasets}

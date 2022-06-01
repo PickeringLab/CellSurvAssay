@@ -15,7 +15,7 @@
 #'   types, separate each by a comma.
 #' @param method Method used for the fit. It's \code{"ml"} (maximum likelihood)
 #'   by default. Can be \code{"ls"} (least squares) or \code{"franken"}
-#'   (weighted least squares as described by Franken eta al.(2006)).
+#'   (weighted least squares as described by Franken et al.(2006)).
 #' @param PEmethod Controls the value of the plating efficiencies. \code{"fit"}
 #'   calculates fitted plating efficiencies as model parameters, \code{"fix"}
 #'   uses fixed ones calculated from the observed zero dose.
@@ -45,7 +45,7 @@
 #' plotCSCurve(datatab, "shCASP8-N", "shCASP8-B+Z+N", "control-B", col = c("red", "blue", "purple"),
 #' pch = 4, ylim = c(0.1, 1), xlab = "X-axis", ylab = "Y-axis", title = "Multiple Curves")
 #' @importFrom methods is
-#' @seealso [ggplotCSCurve()]
+#' @seealso \code{\link{ggplotCSCurve}}
 #' @export
 plotCSCurve <- function(data, ..., method = "ml", PEmethod = "fit", col = NULL, xlim = NULL, ylim = c(0.008, 1),
                         xlab = "Dose (Gy)", ylab = "Survival (1 = 100%)", title = NULL, pch = 1) {

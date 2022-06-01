@@ -27,7 +27,7 @@ types, separate each by a comma.}
 
 \item{method}{Method used for the fit. It's \code{"ml"} (maximum likelihood)
 by default. Can be \code{"ls"} (least squares) or \code{"franken"}
-(weighted least squares as described by Franken eta al.(2006)).}
+(weighted least squares as described by Franken et al.(2006)).}
 
 \item{PEmethod}{Controls the value of the plating efficiencies. \code{"fit"}
 calculates fitted plating efficiencies as model parameters, \code{"fix"}
@@ -79,5 +79,5 @@ plotCSCurve(datatab, "shCASP8-N", "shCASP8-B+Z+N", "control-B", col = c("red", "
 pch = 4, ylim = c(0.1, 1), xlab = "X-axis", ylab = "Y-axis", title = "Multiple Curves")
 }
 \seealso{
-[ggplotCSCurve()]
+\code{\link{ggplotCSCurve}}
 }

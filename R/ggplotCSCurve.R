@@ -1,10 +1,10 @@
-#' Plots Cell Survival Curves using \code{ggplot()}
+#' Plots Cell Survival Curves using \code{\link[ggplot2]{ggplot}}
 #'
-#' This function helps to plot the cell survival curves using \code{ggplot()},
-#' and is the recommended way to plot this curves over
-#' \code{\link{plotCSCurve}}. A single function plots the curves, both for a
-#' single or multiple cell type(s), and allows most of the options necessary to
-#' customize the figures for publication.
+#' This function helps to plot the cell survival curves using
+#' \code{\link[ggplot2]{ggplot}}, and is the recommended way to plot this curves
+#' over \code{\link{plotCSCurve}}. A single function plots the curves, both for
+#' a single or multiple cell type(s), and allows most of the options necessary
+#' to customize the figures for publication.
 #'
 #' @param data A data frame containing at least the following five columns:
 #'   \code{"cline"}, \code{"Exp"}, \code{"dose"}, \code{"ncells"}, and
@@ -152,7 +152,7 @@
 #' ggplotCSCurve(datatab, "shCASP8-NT", "shCASP8-B", "shCASP8-B+Z", "shCASP8-B+Z+N", save = "yes")
 #' }
 #'
-#' @seealso Please also refer to [plotCSCurve()] for regular plots.
+#' @seealso Please also refer to \code{\link{plotCSCurve}} for regular plots.
 #' @export
 ggplotCSCurve <- function(data, ..., method = "ml", PEmethod = "fit", colors = NULL,
                           title = "", title_size = 20, title_color = "black", title_face = "bold", title_align = "center",

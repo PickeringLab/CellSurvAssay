@@ -35,8 +35,10 @@ These two tools are:
         analysis in one location and automates the data wrangling steps
         to the extent that only single lines of code suffice for each
         step of the analysis,
-    -   it utilizes `ggplot()` to plot the cell survival curves, and
-        builds better quality figures than other available R packages,
+    -   it utilizes
+        [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html)
+        to plot the cell survival curves, and builds better quality
+        figures than other available R packages,
     -   it is less time consuming and more convenient for the user, as
         it accepts the raw data for the analysis and calculates the
         plating efficiencies by itself, unlike many automated software
@@ -162,9 +164,10 @@ lqmodelFit(datatab, "shCASP8-N")
     functions: `plotCSCurve()` and `ggplotCSCurve()`.
 -   While the former gives the standard curves provided by the CFAssay
     package, the latter is preferred as it uses the widely popular
-    `ggplot()` function of R to plot the curves, allowing all the
-    customizations and better graphics. It also allows to easily
-    download the figures plotted in the users’ own specifications.
+    [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html)
+    function of R to plot the curves, allowing all the customizations
+    and better graphics. It also allows to easily download the figures
+    plotted in the users’ own specifications.
 
 ### Individual curves
 
