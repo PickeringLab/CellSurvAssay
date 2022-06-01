@@ -3,7 +3,7 @@ pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   CellSurvAssay: CellSurvAssay.html
-last_built: 2022-06-01T01:14Z
+last_built: 2022-06-01T02:00Z
 urls:
   reference: https://pickeringlab.github.io/CellSurvAssay/reference
   article: https://pickeringlab.github.io/CellSurvAssay/articles

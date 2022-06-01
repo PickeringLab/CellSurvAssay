@@ -83,7 +83,7 @@
 <ul><li>This R package has been written around <a href="https://bioconductor.org/packages/release/bioc/html/CFAssay.html" class="external-link">CFAssay</a>, another R package that can be used to perform Cell Survival Assay analysis in R. However, <strong>CellSurvAssay</strong> has it’s own purposes and advantages:<ul>
 <li>it makes performing Clonogenic Survival Analysis in R incredibly user-friendly and efficient, even for beginner R users who don’t have the luxury of time to dig deeper into R,</li>
 <li>it arranges all the commonly used steps of clonogenic assay analysis in one location and automates the data wrangling steps to the extent that only single lines of code suffice for each step of the analysis,</li>
-<li>it utilizes <code>ggplot()</code> to plot the cell survival curves, and builds better quality figures than other available R packages,</li>
+<li>it utilizes <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link"><code>ggplot()</code></a> to plot the cell survival curves, and builds better quality figures than other available R packages,</li>
 <li>it is less time consuming and more convenient for the user, as it accepts the raw data for the analysis and calculates the plating efficiencies by itself, unlike many automated software commonly used,</li>
 <li>it offers various method options for parameter estimation and calculating plating efficiencies, unlike most other available software tools, and</li>
 <li>as R is being utilized, the methodology stays open and the results reproducible.</li>
@@ -183,7 +183,7 @@
 </h1>
 <ul>
 <li>The cell survival curves can be plotted using two different functions: <code><a href="reference/plotCSCurve.html">plotCSCurve()</a></code> and <code><a href="reference/ggplotCSCurve.html">ggplotCSCurve()</a></code>.</li>
-<li>While the former gives the standard curves provided by the CFAssay package, the latter is preferred as it uses the widely popular <code>ggplot()</code> function of R to plot the curves, allowing all the customizations and better graphics. It also allows to easily download the figures plotted in the users’ own specifications.</li>
+<li>While the former gives the standard curves provided by the CFAssay package, the latter is preferred as it uses the widely popular <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link"><code>ggplot()</code></a> function of R to plot the curves, allowing all the customizations and better graphics. It also allows to easily download the figures plotted in the users’ own specifications.</li>
 </ul>
 <div class="section level3">
 <h3 id="individual-curves">Individual curves<a class="anchor" aria-label="anchor" href="#individual-curves"></a>
