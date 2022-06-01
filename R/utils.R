@@ -1,5 +1,17 @@
+# These R script contains a few helper functions utilized by the primary functions in the package
+# These functions are not exported by the package
+
+
+
+
+# Assigning global variables utilized by the different functions in the package
 utils::globalVariables(c("cline", "alpha", "d", "pts", "ctype", "pts_minus_sems", "pts_plus_sems", "yhat", "y_hat"))
 
+
+
+
+
+# The fixed version of CFAssay::sfpmean_mod()
 .sfpmean_mod <- function (X, S0 = NULL)
 {
   sf.mean <- function(X) {
@@ -49,6 +61,9 @@ utils::globalVariables(c("cline", "alpha", "d", "pts", "ctype", "pts_minus_sems"
 
 
 
+
+
+# Creates a data frame used by ggplotCSCurve() to create the figures
 .dfforggPlot <- function(datatable, cell_type, method, PEmethod) {
   alpha <- c()
   beta <- c()
@@ -88,6 +103,10 @@ utils::globalVariables(c("cline", "alpha", "d", "pts", "ctype", "pts_minus_sems"
 }
 
 
+
+
+
+# The quadratic function utilized by calculateDER()
 .quadraticFunction <- function(a, b, c) {
   if(delta(a, b, c) > 0) {
     x_1 <- (-b + sqrt(delta(a, b, c)))/(2*a)
