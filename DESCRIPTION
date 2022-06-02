@@ -13,7 +13,7 @@ Authors@R: c(
     person("Thomaia", "Pamplin", , "tpamplin@mdanderson.org", role = "ctb")
   )
 Description: One of two tools that make Clonogenic Survival Analysis in R
-    super easy and efficient, even for beginner R users. For more description regarding the CellSurvAssay R package , visit https://arunangshu-github.github.io/CellSurvAssay/, 
+    super easy and efficient, even for beginner R users. For more description regarding the CellSurvAssay R package , visit https://pickeringlab.github.io/CellSurvAssay/, 
     and for the CellSurvAssay Shiny app, visit https://pickeringlab.shinyapps.io/CellSurvAssay-App. 
 License: LGPL (>= 3)
 Depends: 
